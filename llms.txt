@@ -1,0 +1,24 @@
+# Swap XRP — Exchange XRP Cross-Chain Reference
+
+> Exchange XRP — the native asset of the XRP Ledger — for stablecoins and tokens on other chains, through exchanges or non-custodial cross-chain swap services.
+
+## Key Facts
+- XRP: native asset of the XRP Ledger (XRPL), a standalone, non-EVM blockchain
+- Not an ERC-20 token — Ethereum wallets and same-chain DEXs do not hold XRP directly
+- Swap paths: centralized exchange, or non-custodial cross-chain swap service
+- XRP↔EVM requires a cross-chain route, not a same-chain DEX trade
+- Costs: XRPL transaction fee (XRP) + exchange/service fee & spread + destination network fee
+- Many exchange deposits require a destination tag to credit XRP correctly
+
+## Internal Sections & App Navigation
+- [What is swapping XRP?](#what)
+- [How swapping XRP works](#how)
+- [XRP Ledger & non-EVM](#ledger)
+- [Routes & where to swap](#routes)
+- [Fees, tags & time](#fees)
+- [Is swapping XRP safe?](#safety)
+- [FAQ](#faq)
+- [Open Swap XRP App](dashboard/index.html)
+
+## Disclaimer
+Independent page. Not affiliated with Ripple, the XRP Ledger Foundation or any exchange or swap service. Not financial advice.

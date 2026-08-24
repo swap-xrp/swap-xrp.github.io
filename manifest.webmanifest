@@ -1,0 +1,12 @@
+{
+  "name": "Swap XRP",
+  "short_name": "Swap XRP",
+  "description": "Exchange XRP for stablecoins and other assets via exchanges or cross-chain swap services.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "en",
+  "background_color": "#0a0e14",
+  "theme_color": "#0a0e14",
+  "icons": [{ "src": "xrp.png", "sizes": "any", "type": "image/png", "purpose": "any" }]
+}

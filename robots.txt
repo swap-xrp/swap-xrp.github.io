@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://swap-xrp.github.io/sitemap.xml
