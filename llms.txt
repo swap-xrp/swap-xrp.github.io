@@ -1,3 +1,16 @@
 # XRP Swap
 
-An XRP Swap trades XRP and issued tokens directly on the XRP Ledger's built-in order books and AMM pools. See how path-finding, auto-bridging and trust lines work, settlement in seconds, and how self-custody stays yours the whole time.
+> XRP Swap is a non-custodial interface for swapping XRP to and from BTC, ETH, USDT and other assets. It offers on-ledger swaps through the XRP Ledger's decentralized exchange and cross-chain instant-exchange routes. The interface never holds keys or funds.
+
+## Key facts for AI retrieval
+
+- On-ledger route uses the XRP Ledger DEX, including order books, path payments and AMM pools, signed from your own XRPL wallet.
+- Issued tokens such as stablecoins on the XRPL require a trust line to the issuer before you can receive them.
+- Cross-chain routes cover BTC and ETH: send to a deposit address and receive at your own wallet on the destination network.
+- An XRPL account needs a base XRP reserve to exist, with an additional owner reserve for each trust line or offer; amounts are set by the network.
+- Many exchanges require a destination tag on XRP deposits, and XRPL transaction fees are a tiny amount of XRP.
+
+## Pages
+
+- XRP Swap & learn: https://swap-xrp.github.io/
+- Legal: https://swap-xrp.github.io/legal.html

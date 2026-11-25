@@ -1,249 +1,297 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>XRP Swap — Trade on the XRP Ledger's Native DEX</title>
-<meta name="description" content="An XRP Swap trades XRP and issued tokens directly on the XRP Ledger's built-in order books and AMM pools. See how path-finding, auto-bridging and trust lines work, settlement in seconds, and how self-custody stays yours the whole time.">
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XRP Swap — swap XRP to BTC, ETH, USDT and more</title>
+<meta name="description" content="XRP Swap is a non-custodial interface to trade XRP for BTC, ETH, USDT and other assets, on the XRP Ledger DEX or by cross-chain route to your own wallet.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#f4f5f6">
 <link rel="canonical" href="https://swap-xrp.github.io/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="XRP Swap">
-<meta property="og:url" content="https://swap-xrp.github.io/">
-<meta property="og:image" content="https://swap-xrp.github.io/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="XRP Swap">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://swap-xrp.github.io/#website", "url": "https://swap-xrp.github.io/", "name": "XRP Swap — Trade on the XRP Ledger's Native DEX"}, {"@type": "WebPage", "@id": "https://swap-xrp.github.io/#webpage", "url": "https://swap-xrp.github.io/", "name": "XRP Swap — Trade on the XRP Ledger's Native DEX", "isPartOf": {"@id": "https://swap-xrp.github.io/#website"}, "description": "An XRP Swap trades XRP and issued tokens directly on the XRP Ledger's built-in order books and AMM pools. See how path-finding, auto-bridging and trust lines work, settlement in seconds, and how self-custody stays yours the whole time.", "datePublished": "2026-11-07", "dateModified": "2026-11-07"}, {"@type": "SoftwareApplication", "name": "XRP Swap", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://swap-xrp.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Swaps"}, {"@type": "ListItem", "position": 3, "name": "XRP Swap"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an XRP Swap?", "acceptedAnswer": {"@type": "Answer", "text": "It trades XRP or an issued token for another asset, executed directly on the XRP Ledger's built-in order books and AMM pools and settled in a single ledger close, with no custodian holding your funds in between."}}, {"@type": "Question", "name": "How long does an XRP Swap take?", "acceptedAnswer": {"@type": "Answer", "text": "About three to five seconds — the time it takes the XRP Ledger to close one ledger. There is no separate confirmation wait the way a multi-chain route often needs."}}, {"@type": "Question", "name": "What does an XRP Swap cost?", "acceptedAnswer": {"@type": "Answer", "text": "A fraction of a cent, paid as a small amount of XRP that is destroyed rather than handed to any validator. The fee does not scale meaningfully with the size of the swap."}}, {"@type": "Question", "name": "Do I need a trust line before an XRP Swap?", "acceptedAnswer": {"@type": "Answer", "text": "Only to receive an issued token, not to send or receive XRP itself. A trust line is a one-time setup per issuer and currency that tells the ledger you are willing to hold that token."}}, {"@type": "Question", "name": "What is auto-bridging in an XRP Swap?", "acceptedAnswer": {"@type": "Answer", "text": "Auto-bridging is the path-finding engine routing a trade between two issued tokens through XRP as an intermediate hop when no direct market exists between them, without you converting to XRP yourself."}}, {"@type": "Question", "name": "Does an XRP Swap require an account with an exchange?", "acceptedAnswer": {"@type": "Answer", "text": "No. You connect a self-custody wallet and sign the transaction yourself; the trade settles on-ledger with no sign-up and no deposit held by a third party."}}, {"@type": "Question", "name": "What happens if an XRP Swap can't meet my minimum?", "acceptedAnswer": {"@type": "Answer", "text": "The transaction simply fails and nothing moves. Every swap carries a minimum-received limit you set in advance, so a shift in liquidity can never hand you a worse rate without your transaction reverting first."}}]}]}</script>
+<meta property="og:type" content="website"><meta property="og:site_name" content="XRP Swap"><meta property="og:title" content="XRP Swap — swap XRP to BTC, ETH, USDT and more"><meta property="og:description" content="XRP Swap is a non-custodial interface to trade XRP for BTC, ETH, USDT and other assets, on the XRP Ledger DEX or by cross-chain route to your own wallet."><meta property="og:url" content="https://swap-xrp.github.io/"><meta property="og:image" content="https://swap-xrp.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="XRP Swap — swap XRP to BTC, ETH, USDT and more"><meta name="twitter:description" content="XRP Swap is a non-custodial interface to trade XRP for BTC, ETH, USDT and other assets, on the XRP Ledger DEX or by cross-chain route to your own wallet."><meta name="twitter:image" content="https://swap-xrp.github.io/og-image.png">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://swap-xrp.github.io/#organization","name":"XRP Swap","url":"https://swap-xrp.github.io/","description":"XRP Swap is a non-custodial interface to trade XRP for BTC, ETH, USDT and other assets, on the XRP Ledger DEX or by cross-chain route to your own wallet.","logo":{"@type":"ImageObject","@id":"https://swap-xrp.github.io/#logo","url":"https://swap-xrp.github.io/icon.svg","caption":"XRP Swap"}},{"@type":"WebSite","@id":"https://swap-xrp.github.io/#website","url":"https://swap-xrp.github.io/","publisher":{"@id":"https://swap-xrp.github.io/#organization"},"name":"XRP Swap"},{"@type":"WebPage","@id":"https://swap-xrp.github.io/#webpage","url":"https://swap-xrp.github.io/","publisher":{"@id":"https://swap-xrp.github.io/#organization"},"name":"XRP Swap — swap XRP to BTC, ETH, USDT and more","isPartOf":{"@id":"https://swap-xrp.github.io/#website"},"mainEntity":{"@id":"https://swap-xrp.github.io/#app"},"breadcrumb":{"@id":"https://swap-xrp.github.io/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://swap-xrp.github.io/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://swap-xrp.github.io/"},{"@type":"ListItem","position":2,"name":"XRP Swap","item":"https://swap-xrp.github.io/"}]},{"@type":"WebApplication","@id":"https://swap-xrp.github.io/#app","url":"https://swap-xrp.github.io/","publisher":{"@id":"https://swap-xrp.github.io/#organization"},"name":"XRP Swap","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"XRP Swap is a non-custodial interface to trade XRP for BTC, ETH, USDT and other assets, on the XRP Ledger DEX or by cross-chain route to your own wallet.","isPartOf":{"@id":"https://swap-xrp.github.io/#website"}},{"@type":"FAQPage","@id":"https://swap-xrp.github.io/#faq","isPartOf":{"@id":"https://swap-xrp.github.io/#webpage"},"about":{"@id":"https://swap-xrp.github.io/#app"},"name":"XRP Swap FAQ","mainEntity":[{"@type":"Question","name":"What is an XRP swap?","acceptedAnswer":{"@type":"Answer","text":"An XRP swap is a trade of XRP for another asset such as BTC, ETH or USDT, or the reverse. It can run on the XRP Ledger\u0027s own DEX or through a cross-chain route, depending on which asset you want."}},{"@type":"Question","name":"Can I swap XRP to BTC or ETH on the XRP Ledger?","acceptedAnswer":{"@type":"Answer","text":"No. BTC and ETH do not exist on the XRPL, so that swap uses a cross-chain route. You send XRP to a deposit address and receive BTC or ETH at your own wallet on its network."}},{"@type":"Question","name":"Why does my XRP balance not all show as spendable?","acceptedAnswer":{"@type":"Answer","text":"An XRPL account must keep a base reserve of XRP to stay active, plus an owner reserve for each trust line or open offer. That reserved XRP is locked while those objects exist, and the amounts are set by the network and can change."}},{"@type":"Question","name":"What is a destination tag and when do I need one?","acceptedAnswer":{"@type":"Answer","text":"A destination tag is a number attached to an XRP payment that tells a shared account which customer it is for. Many exchanges require it on deposits, and leaving it out can delay or lose the credit. Your own wallet usually does not need one."}},{"@type":"Question","name":"What is a trust line on the XRP Ledger?","acceptedAnswer":{"@type":"Answer","text":"A trust line is your account\u0027s opt-in to hold a token from a specific issuer, such as a stablecoin. You need one before you can receive that token, and it adds an owner reserve in XRP while it is open."}},{"@type":"Question","name":"How much does an XRP swap cost in fees?","acceptedAnswer":{"@type":"Answer","text":"An on-ledger swap pays a tiny XRP transaction fee plus the spread or pool fee built into the quote. A cross-chain swap adds a rate margin and the network fee of the asset you receive, all shown in the quote before you confirm."}}]}]}
+</script>
 <style>
-:root{--bg:#FBFAF7;--surface:#FFFFFF;--text:#1A1608;--muted:#6B6248;--accent:#CA8A04;--accent-ink:#1A1400;--radius:20px;--display:"Sora";--body:"IBM Plex Sans"}
+@font-face{font-family:'Inter';src:url('assets/inter.woff2') format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Space Grotesk';src:url('assets/space-grotesk.woff2') format('woff2');font-weight:500 700;font-display:swap}
+:root{
+ --bg:#f4f5f6;--card:#fff;--ink:#15191d;--muted:#737b88;--faint:#aeb4bf;
+ --line:#e9ecef;--line-2:#dee2e6;--panel:#f6f7f8;--panel-2:#eceef1;
+ --accent:#23292f;--accent-hover:#343c45;--accent-ink:#2a5d8f;--accent-soft:#e6edf4;--accent-on:#ffffff;--promo:#eef2f6;--text-2:#4b5563;
+ --shadow:0 1px 2px rgba(13,17,28,.04),0 24px 56px -40px rgba(13,17,28,.24);--pico-bg:#fff;--pico-ring:rgba(13,17,28,.06);
+ --ease:cubic-bezier(.2,.7,.2,1);
+ --head:"Space Grotesk","Arial",sans-serif;--body:"Inter","Arial",sans-serif;color-scheme:light}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:2rem}
-body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.7 var(--body);-webkit-font-smoothing:antialiased}
-a{color:var(--accent);text-underline-offset:.22em}
-a:hover{text-decoration-thickness:2px}
-button,input,select,textarea{font:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
-::selection{background:var(--accent);color:var(--accent-ink)}
-.c64fbc7{width:min(1180px,calc(100% - 64px));margin-inline:auto}
-.cd203bd{position:absolute;top:1rem;left:1rem;z-index:5;padding:.6rem 1rem;background:var(--surface);border-radius:var(--radius);transform:translateY(-200%)}
-.cd203bd:focus{transform:translateY(0)}
-.cc949e8{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;min-height:96px;border-bottom:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
-.c6c8732{display:inline-flex;align-items:center;gap:.7rem;color:var(--text);font:650 1.1rem/1.2 var(--display);text-decoration:none}
-.cddd371{display:grid;place-items:center;width:36px;height:36px;background:var(--accent);color:var(--accent-ink);border-radius:calc(var(--radius) * .6)}
-.cddd371 svg{width:22px;height:22px;fill:none;stroke:var(--accent-ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.cc3fdc7{display:flex;align-items:center;gap:1.7rem}
-.cc3fdc7>a:not(.cb317f7){color:var(--muted);font-size:.9rem;text-decoration:none}
-.cc3fdc7>a:hover{color:var(--text)}
-.cb317f7{padding:.6rem 1rem;border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);border-radius:var(--radius);background:color-mix(in srgb,var(--accent) 7%,var(--surface));font-size:.9rem;font-weight:650;text-decoration:none}
-.cacca7b{padding-top:1.8rem;font-size:.82rem;color:var(--muted)}
-.ca45189{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0;padding:0;list-style:none;color:var(--muted);font-size:.82rem}
-.ca45189 ol,.ca45189 ul{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0;padding:0;list-style:none}
-.ca45189 a{color:var(--muted)}
-.ca45189 [aria-current]{color:var(--text)}
-.c61265a{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);align-items:start;gap:clamp(1.75rem,5vw,4rem);padding:2.25rem 0 3.5rem}
-.c70b95e{min-width:0}
-.c26686a{display:inline-flex;align-items:center;gap:.6rem;margin:0 0 1.4rem;color:var(--muted);font-size:.88rem}
-.c26686a::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 10%,transparent)}
-h1{margin:0;font:550 clamp(2.6rem,4.9vw,4.65rem)/1.07 var(--display);letter-spacing:-.055em;overflow-wrap:anywhere;text-wrap:balance}
-h1 a{color:var(--accent)}
-.c46fd11{max-width:48ch;margin:1.6rem 0 2rem;color:var(--muted);font-size:1.07rem;line-height:1.8}
-.cc434ed{display:inline-flex;justify-content:center;align-items:center;gap:1.6rem;min-height:54px;padding:.9rem 1.4rem;border:1px solid color-mix(in srgb,var(--accent) 70%,var(--text));border-radius:var(--radius);background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 88%,var(--text)));color:var(--accent-ink);font-weight:650;text-decoration:none;box-shadow:0 8px 22px color-mix(in srgb,var(--accent) 20%,transparent);transition:transform .2s ease,box-shadow .2s ease}
-.cc434ed:hover{transform:translateY(-2px);box-shadow:0 12px 28px color-mix(in srgb,var(--accent) 28%,transparent)}
-.c95e5b3{font-size:1.25rem;line-height:1}
-.c38bb93{margin:1rem 0 0;color:var(--muted);font-size:.8rem}
-.ce68905{position:relative;min-width:0;padding:12px;border:1px solid color-mix(in srgb,var(--accent) 15%,transparent);border-radius:calc(var(--radius) + 12px);background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 14%,var(--bg)),color-mix(in srgb,var(--accent) 3%,var(--bg)));box-shadow:0 30px 70px -25px color-mix(in srgb,var(--text) 20%,transparent)}
-.c9a02da{padding:clamp(1.25rem,3vw,2rem);border:1px solid color-mix(in srgb,var(--text) 8%,transparent);border-radius:var(--radius);background:var(--surface);box-shadow:0 4px 14px color-mix(in srgb,var(--text) 4%,transparent)}
-.c004fb7{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.65rem}
-.c004fb7 h2{margin:0;font:600 1.2rem/1.3 var(--display);letter-spacing:-.025em}
-.c19a9d0{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .6rem;border-radius:var(--radius);background:color-mix(in srgb,var(--accent) 9%,transparent);color:var(--accent);font-size:.72rem;white-space:nowrap}
-.c19a9d0::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
-.c9ce352{display:block;margin-bottom:.5rem;font-size:.83rem;font-weight:600}
-.ca9a4bb{display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;border:1px solid color-mix(in srgb,var(--text) 16%,transparent);border-radius:var(--radius);background:var(--bg);transition:border-color .2s ease}
-.ca9a4bb:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 12%,transparent)}
-.ca9a4bb input{width:100%;min-width:0;padding:.25rem 0;border:0;background:var(--bg);color:var(--text);font:550 2rem/1.3 var(--display);font-variant-numeric:tabular-nums}
-.ca9a4bb input:focus-visible{outline-offset:2px}
-.c2f9789{color:var(--muted);font-size:.8rem}
-.c8bd9f3{margin:.5rem 0 1.3rem;color:var(--muted);font-size:.74rem}
-.c701508{display:grid;grid-template-columns:minmax(0,1fr) 32px minmax(0,1fr);align-items:center;gap:.6rem;padding:1.1rem 0;border-top:1px solid color-mix(in srgb,var(--text) 8%,transparent);border-bottom:1px solid color-mix(in srgb,var(--text) 8%,transparent)}
-.c31a72a{display:flex;flex-direction:column;align-items:center;gap:.45rem;min-width:0;color:var(--muted);font-size:.75rem}
-.ce478d6{display:flex;align-items:center;justify-content:center;min-height:52px;max-width:100%;overflow-wrap:anywhere;color:var(--text);font-weight:600}
-.ce478d6 img,.ce478d6 svg{display:block;max-width:100%;width:auto;height:44px;object-fit:contain}
-.c1372b1{display:grid;place-items:center;width:32px;height:32px;border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);border-radius:50%;background:color-mix(in srgb,var(--accent) 7%,var(--surface));color:var(--accent)}
-.c4c3114{padding:1.4rem 0 .25rem}
-.cb401c1{margin:0;color:var(--muted);font-size:.8rem}
-.c59e6c7{display:flex;align-items:baseline;flex-wrap:wrap;gap:.5rem;margin:.3rem 0 1rem}
-.c59e6c7 output{font:550 clamp(1.65rem,3vw,2.5rem)/1.2 var(--display);letter-spacing:-.045em;color:var(--text);overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
-.c31ae50{display:grid;gap:.45rem;margin:0 0 1.2rem;font-size:.8rem}
-.c31ae50>div{display:flex;justify-content:space-between;gap:1rem}
-.c31ae50 dt{color:var(--muted)}
-.c31ae50 dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
-.c9a02da .cc434ed{width:100%;justify-content:space-between;min-height:50px;font-size:.9rem}
-.c226f6e{margin:1rem 0 0;color:var(--muted);font-size:.73rem;line-height:1.65}
-.cd07cfe{margin:.6rem 0 0;color:var(--text);font-size:.8rem;font-weight:600}
-.cd07cfe:empty{display:none}
-.ce1954e{padding:2.1rem 2.3rem;margin-bottom:4.5rem;border:1px solid color-mix(in srgb,var(--text) 9%,transparent);border-radius:var(--radius);background:linear-gradient(115deg,var(--surface),color-mix(in srgb,var(--accent) 4%,var(--surface)))}
-.cde7bf9{margin:0 0 1.3rem;font:550 1.5rem/1.3 var(--display);letter-spacing:-.035em}
-.cde4e8c{width:100%;border-collapse:collapse;text-align:left;font-size:.92rem}
-.cde4e8c caption{text-align:left;padding:0 0 1rem;color:var(--muted)}
-.cde4e8c th,.cde4e8c td{padding:1rem .9rem;border-bottom:1px solid color-mix(in srgb,var(--text) 9%,transparent);vertical-align:top;overflow-wrap:anywhere}
-.cde4e8c th{font-weight:600;color:var(--text)}
-.cde4e8c td{color:var(--muted)}
-.cde4e8c th:first-child,.cde4e8c td:first-child{padding-left:0}
-.cde4e8c tr:last-child>*{border-bottom:0}
-.cde4e8c thead th{font-size:.82rem;color:var(--muted)}
-.c0f0f24{max-width:820px;margin-inline:auto}
-.c717ddc{padding:0 0 2.6rem;margin:0 0 2.6rem;border-bottom:1px solid color-mix(in srgb,var(--text) 10%,transparent);scroll-margin-top:2rem}
-.c7fd612{margin:0 0 1.1rem;font:550 clamp(1.7rem,3vw,2.25rem)/1.2 var(--display);letter-spacing:-.04em;text-wrap:balance;overflow-wrap:anywhere}
-.cee6bfa{color:var(--muted);font:400 1rem/1.85 var(--body);overflow-wrap:anywhere}
-.cee6bfa p{margin:0 0 1.15rem}
-.cee6bfa h3,.cee6bfa h4{margin:1.6rem 0 .65rem;color:var(--text);font:600 1.25rem/1.4 var(--display)}
-.cee6bfa strong{color:var(--text);font-weight:600}
-.cee6bfa ul,.cee6bfa ol{padding-left:1.4rem}
-.cee6bfa li{padding-left:.3rem;margin:.5rem 0}
-.cee6bfa li::marker{color:var(--accent)}
-.cee6bfa blockquote{margin:1.5rem 0;padding:1rem 1.4rem;border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;background:color-mix(in srgb,var(--accent) 6%,var(--surface));color:var(--text)}
-.cee6bfa img{max-width:100%;height:auto;border-radius:var(--radius)}
-.cee6bfa>:last-child{margin-bottom:0}
-.c0347f6{margin:.8rem 0;border:1px solid color-mix(in srgb,var(--text) 10%,transparent);border-radius:var(--radius);background:var(--surface);overflow:hidden}
-.ce9a3c1{position:relative;display:block;padding:1.25rem 3.5rem 1.25rem 1.4rem;cursor:pointer;list-style:none;color:var(--text);font:550 1.05rem/1.5 var(--display)}
-.ce9a3c1::-webkit-details-marker{display:none}
-.ce9a3c1::after{content:"+";position:absolute;right:1.4rem;top:1.25rem;color:var(--accent);font:400 1.4rem/1.1 var(--body)}
-.c0347f6[open]>.ce9a3c1::after,.c0347f6 details[open]>.ce9a3c1::after{content:"−"}
-.c0347f6[open]{border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
-.ce9a3c1:focus-visible{outline-offset:-5px;border-radius:var(--radius)}
-.c91d21a{padding:0 1.4rem 1.4rem;color:var(--muted);font-size:.95rem;line-height:1.8;overflow-wrap:anywhere}
-.c91d21a>:first-child{margin-top:0}
-.c91d21a>:last-child{margin-bottom:0}
-.c42e4b1{max-width:820px;margin:3.5rem auto 0;padding-top:2rem;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
-.c2eade4{display:grid;gap:.7rem;margin:0;padding:0;list-style:none}
-.c195b93{padding:.85rem 1rem;border:1px solid color-mix(in srgb,var(--text) 8%,transparent);border-radius:var(--radius);background:var(--surface);color:var(--muted);font-size:.86rem;overflow-wrap:anywhere}
-.c195b93 a{color:var(--text);text-decoration-color:color-mix(in srgb,var(--accent) 55%,transparent)}
-a.c195b93{display:block;color:var(--text)}
-.c4b1ead{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:4rem;padding:1.75rem 0 2rem;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent);color:var(--muted);font-size:.8rem}
-.c4b1ead p{margin:0}
-.c4b1ead a{color:var(--muted)}
-@media(min-width:1500px){.c61265a{padding-top:2.75rem;padding-bottom:4rem}}
-@media(max-width:850px){.c61265a{grid-template-columns:1fr;gap:2.5rem;padding-top:2.5rem;padding-bottom:3rem}.c70b95e{max-width:640px}.ce68905{width:100%;max-width:560px;justify-self:center}h1{font-size:clamp(2.5rem,7vw,4rem)}.c46fd11{max-width:58ch}.ce1954e{margin-bottom:3rem}.cc3fdc7{gap:1rem}}
-@media(max-width:540px){.c64fbc7{width:calc(100% - 32px)}.cc949e8{min-height:78px;gap:.75rem}.c6c8732{font-size:.95rem;gap:.5rem}.cddd371{width:30px;height:30px}.cc3fdc7>a:not(.cb317f7){display:none}.cb317f7{padding:.5rem .75rem;font-size:.8rem}.cacca7b{padding-top:1.25rem}.c61265a{padding-top:2rem;gap:2rem}h1{font-size:2.65rem}.c46fd11{font-size:1rem}.c70b95e>.cc434ed{width:100%}.c38bb93{text-align:center}.ce68905{padding:8px;border-radius:calc(var(--radius) + 8px)}.c9a02da{padding:1.2rem}.ce1954e{padding:1.4rem 1.1rem}.cde4e8c{display:block;overflow-x:auto}.cde4e8c th,.cde4e8c td{min-width:125px;padding:.8rem .65rem}.ce9a3c1{padding-left:1rem}.c91d21a{padding-left:1rem;padding-right:1rem}.c4b1ead{align-items:flex-start;flex-direction:column;margin-top:3rem}.c717ddc{margin-bottom:2rem;padding-bottom:2rem}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}.cc434ed:hover{transform:none}}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;color:var(--ink);font:15px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden;background:var(--bg)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:none;-webkit-mask-image:linear-gradient(#000 0,rgba(0,0,0,.35) 60%,transparent 100%);mask-image:linear-gradient(#000 0,rgba(0,0,0,.35) 60%,transparent 100%)}
+a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer;background:none;border:0;color:inherit}
+img{display:block;max-width:100%}
+h1,h2,h3{margin:0;font-family:var(--head);font-weight:500;letter-spacing:-.01em}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+
+.nav{display:flex;align-items:center;gap:24px;padding:16px 24px;max-width:1280px;margin:0 auto;width:100%}
+.brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-weight:500;font-size:20px;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;flex:0 0 auto}
+.brand img{width:28px;height:28px}
+.nlinks{display:flex;align-items:center;gap:20px}
+.nlinks a{font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .16s var(--ease)}
+.nlinks a:hover{color:var(--ink)}
+.spacer{flex:1}
+main{flex:1}
+.chain{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-radius:10px;background:var(--panel-2);font-weight:500;font-size:14px;color:var(--ink);transition:background-color .16s var(--ease);flex:0 0 auto;white-space:nowrap}
+.chain img{width:20px;height:20px;border-radius:50%}
+.chain:hover{background:var(--line-2)}
+.chain .cv{width:12px;height:12px;color:var(--muted)}
+.connect{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:10px;background:var(--card);border:1px solid var(--line-2);color:var(--ink);font-weight:500;font-size:14px;transition:background-color .16s var(--ease),border-color .16s var(--ease);flex:0 0 auto;white-space:nowrap}
+.connect:hover{border-color:var(--faint);background:var(--panel)}
+
+.hero{display:flex;flex-direction:column;align-items:center;padding:32px 20px 48px}
+h1{font-size:clamp(36px,4.6vw,48px);line-height:1.08;letter-spacing:-.025em;text-align:center;color:var(--ink);margin:0 0 32px}
+
+.card{width:min(600px,100%);background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+.tabs{display:flex;align-items:center;gap:4px;padding:20px 20px 16px}
+.tab{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:10px;font-weight:500;font-size:14px;color:var(--muted);transition:background-color .16s var(--ease),color .16s var(--ease)}
+.tab:hover{background:var(--panel-2);color:var(--ink)}
+.tab.on{background:var(--accent-soft);color:var(--accent-ink)}
+.tabs .sp{flex:1}
+.tabs .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--muted);transition:background-color .16s var(--ease),color .16s var(--ease)}
+.tabs .ic:hover{background:var(--panel-2);color:var(--ink)}
+.tabs .ic svg{width:18px;height:18px}
+
+.promo{margin:0 20px;padding:32px;border-radius:12px;background:var(--promo);display:flex;align-items:center;gap:20px}
+.promo-txt{flex:1;min-width:0}
+.promo-h{font-family:var(--head);font-weight:500;font-size:clamp(22px,3.4vw,28px);line-height:1.2;letter-spacing:-.015em;color:var(--ink);margin:0 0 8px;text-wrap:balance}
+.promo-sub{font-size:15px;line-height:1.6;color:var(--text-2);margin:0;max-width:34ch}
+.promo-grid{flex:0 0 auto;display:grid;grid-template-columns:repeat(2,auto);gap:16px}
+.pico{width:52px;height:52px;border-radius:50%;background:var(--pico-bg);box-shadow:0 0 0 1px var(--pico-ring);display:grid;place-items:center;overflow:hidden}
+.pico img{width:100%;height:100%;object-fit:contain;display:block}
+.promo-flow{flex-direction:column;align-items:stretch;gap:24px}
+.promo-flow .promo-sub{max-width:44ch}
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.flow li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.flow li+li::before{content:"";position:absolute;top:22px;right:calc(50% + 30px);width:calc(100% - 52px);height:1px;background:var(--line-2)}
+.fi{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:var(--pico-bg);box-shadow:0 0 0 1px var(--pico-ring);color:var(--accent-ink)}
+.fi img{width:100%;height:100%;display:block}
+.fi svg{width:20px;height:20px}
+.fi.on{background:var(--accent);color:var(--accent-on);box-shadow:none}
+.flow b{margin-top:4px;font-weight:500;font-size:14px;color:var(--ink)}
+.flow small{font-size:13px;line-height:1.4;color:var(--muted)}
+.cta-wrap{padding:20px}
+.cta{width:100%;height:60px;border-radius:12px;background:var(--accent);color:var(--accent-on);font-weight:500;font-size:16px;transition:background-color .16s var(--ease),transform .12s var(--ease)}
+.cta:hover{background:var(--accent-hover)}
+.cta:active{transform:scale(.99)}
+@media(max-width:470px){.promo{flex-direction:column;align-items:flex-start}.promo-grid{grid-template-columns:repeat(4,auto)}.promo-sub{max-width:none}}
+
+.learn{max-width:720px;margin:48px auto 0;width:100%;padding:0 24px 72px}
+.learn-h{font-size:14px;font-weight:500;color:var(--muted);text-align:center;margin:0 0 12px}
+.lrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-start}
+.lcard{flex:0 0 auto;background:transparent;border:1px solid var(--line-2);border-radius:10px;transition:background-color .16s var(--ease),border-color .16s var(--ease)}
+.lcard>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;font-weight:500;font-size:14px;color:var(--text-2)}
+.lcard>summary::-webkit-details-marker{display:none}
+.lcard:hover{border-color:var(--faint);background:var(--card)}.lcard:hover>summary{color:var(--ink)}
+.lcard .chev{width:6px;height:6px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);margin-top:-4px;flex-shrink:0;transition:transform .16s var(--ease)}
+.lcard[open]{order:9;flex:0 0 100%;min-width:0;background:var(--card);border-color:var(--line-2);border-radius:16px;margin-top:8px}
+.lcard[open]>summary{height:auto;padding:20px 24px 0;color:var(--muted);font-size:13px}
+.lcard[open] .chev{transform:rotate(225deg);margin-top:4px}
+.lbody{padding:4px 24px 24px;max-width:660px}
+.lbody h2{font-size:22px;line-height:1.3;color:var(--ink);margin:8px 0 4px}
+.lbody h3{font-size:15px;line-height:1.4;color:var(--ink);margin:20px 0 4px}
+.lbody p{margin:0;font-size:15px;line-height:1.7;color:var(--text-2)}
+.lbody p+p{margin-top:8px}
+.lbody ul,.lbody ol{margin:8px 0 0;padding-left:20px}
+.lbody li{font-size:15px;line-height:1.7;color:var(--text-2);margin-bottom:4px}
+.lbody a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+.lbody strong,.lbody b{color:var(--ink);font-weight:500}
+.lbody .tbl{overflow-x:auto;margin:16px 0 4px}
+.lbody table{width:100%;min-width:420px;border-collapse:collapse;font-size:14px}
+.lbody caption{text-align:left;color:var(--muted);font-size:13px;margin-bottom:8px}
+.lbody th,.lbody td{text-align:left;padding:8px 12px;border:1px solid var(--line-2);vertical-align:top;line-height:1.45}
+.lbody thead th{background:var(--panel);color:var(--ink);font-weight:500}
+.lbody tbody th{background:var(--panel);color:var(--muted);white-space:nowrap;font-weight:500}
+.lbody td{color:var(--text-2)}
+.lfaq h3{margin-top:16px;font-size:16px}
+
+footer{border-top:1px solid var(--line-2);background:var(--card)}
+.foot{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:20px 24px 24px;color:var(--muted);font-size:13px}
+.foot a{color:var(--muted);transition:color .16s var(--ease)}.foot a:hover{color:var(--ink)}.foot .sep{color:var(--faint)}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,8px);background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 16px;font-size:13px;box-shadow:0 16px 40px -16px rgba(13,17,28,.5);z-index:60;opacity:0;visibility:hidden;transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+@media(max-width:1120px){.nlinks{display:none}}
+@media(max-width:720px){.chain span{display:none}.chain{padding:0 8px;gap:4px}}
+@media(max-width:560px){
+  .nav{padding:12px 16px;gap:8px}
+  .brand{font-size:16px}
+  .brand img{width:24px;height:24px}
+  .chain{height:36px;padding:0 8px;gap:4px}
+  .chain span{display:none}
+  .connect{height:36px;padding:0 12px;font-size:13px}
+  .hero{padding:24px 16px 40px}
+  .tabs{padding:16px 16px 12px}.promo{margin:0 16px;padding:24px}.cta-wrap{padding:16px}.cta{height:56px}
+  .learn{margin-top:40px;padding:0 16px 56px}
+}
 </style>
+<link rel="prerender" href="/dashboard/">
+<link rel="prefetch" href="/dashboard/" as="document">
+<link rel="preload" href="/dashboard/" as="document">
 </head>
-<body id="top">
-<a class="cd203bd" href="#content">Skip to content</a>
-<header class="c64fbc7">
-<nav class="cc949e8" aria-label="Main navigation">
-<a class="c6c8732" href="#top"><span class="cddd371" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4"/></svg></span>Swap guide</a>
-<div class="cc3fdc7"><a href="#key-facts">Key facts</a><a href="#sources">Sources</a><a class="cb317f7" href="dashboard/">Swap <span aria-hidden="true">↗</span></a></div>
-</nav>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-cv" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 6 5 5 5-5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 10 4-1.6 7-5.6 7-10V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="7" rx="5" ry="2.5"/><path d="M4 7v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V7"/><path d="M10 15.5c.6 1.2 2.6 2 5 2 2.8 0 5-1.1 5-2.5v-4c0-1.4-2.2-2.5-5-2.5"/><path d="M20 15v4c0 1.4-2.2 2.5-5 2.5s-5-1.1-5-2.5v-2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/><path d="M12 14.5v2"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s-6 6.4-6 10.5a6 6 0 0 0 12 0c0-4.1-6-10.5-6-10.5z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/><path d="M8 7.5h.01M8 16.5h.01"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 13a7.8 7.8 0 0 0 0-2l2-1.5-2-3.4-2.3 1a7.6 7.6 0 0 0-1.7-1L15 2.5h-4l-.4 2.6c-.6.3-1.2.6-1.7 1l-2.3-1-2 3.4L4.6 11a7.8 7.8 0 0 0 0 2l-2 1.5 2 3.4 2.3-1c.5.4 1.1.7 1.7 1l.4 2.6h4l.4-2.6c.6-.3 1.2-.6 1.7-1l2.3 1 2-3.4z"/></symbol>
+</defs></svg>
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="XRP Swap home"><img src="icon.svg" alt=""><span>XRP Swap</span></a>
+  <nav class="nlinks" aria-label="Primary">
+    <a href="#overview">What is it</a>
+    <a href="#compare">On-ledger vs cross-chain</a>
+    <a href="#how">How to swap</a>
+    <a href="#fees">Fees &amp; reserve</a>
+    <a href="#security">Security</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <span class="spacer"></span>
+  <a class="chain" href="/dashboard/" style="text-decoration:none"><img src="assets/coin-xrp.svg" alt=""><span>XRP Ledger</span><svg class="cv" aria-hidden="true"><use href="#i-cv"/></svg></a>
+  <a class="connect" href="/dashboard/" style="text-decoration:none">Connect wallet</a>
 </header>
-<div class="c64fbc7">
-<div class="cacca7b"><nav class="ca45189" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Swaps</span> <span>/</span> <span>XRP Swap</span></nav></div>
-<section class="c61265a" aria-labelledby="hero-title">
-<div class="c70b95e">
-<p class="c26686a">Plan your swap</p>
-<h1 id="hero-title">XRP <em>Swap</em>.</h1>
-<p class="c46fd11">An XRP Swap trades XRP or any issued token for another asset directly on the XRP Ledger's built-in decentralized exchange, settling inside a single ledger close while your funds stay under your own keys the entire time. You pick the pair, the ledger's path-finding engine checks every order book and AMM pool for the best available route, and the trade confirms in roughly three to five seconds for a fee of a fraction of a cent.</p>
-<a class="cc434ed" href="dashboard/">Swap <span class="c95e5b3" aria-hidden="true">↗</span></a>
-<p class="c38bb93">Compare the route. Estimate the rate.</p>
-</div>
-<aside class="ce68905" aria-labelledby="estimator-title">
-<div class="c9a02da">
-<div class="c004fb7"><h2 id="estimator-title">Swap estimator</h2><span class="c19a9d0">Live estimate</span></div>
-<label class="c9ce352" for="amount">You pay</label>
-<div class="ca9a4bb"><input id="amount" type="number" inputmode="decimal" min="1" max="1000000000" step="0.01" value="1000" aria-describedby="amount-help amount-error"><span class="c2f9789">units</span></div>
-<p class="c8bd9f3" id="amount-help">Enter 1–1,000,000,000 units, up to two decimal places.</p>
-<p class="cd07cfe" id="amount-error" aria-live="polite"></p>
-<div class="c701508" aria-label="Swap route">
-<div class="c31a72a"><span>From</span><div class="ce478d6"><img src="assets/tokens/xrp.svg" alt="XRP" width="28" height="28"></div></div>
-<span class="c1372b1" aria-hidden="true">→</span>
-<div class="c31a72a"><span>To</span><div class="ce478d6"><img src="assets/tokens/usdc.svg" alt="USD Coin" width="28" height="28"></div></div>
-</div>
-<div class="c4c3114" aria-live="polite" aria-atomic="true">
-<p class="cb401c1">Estimated amount received</p>
-<div class="c59e6c7"><output id="received" for="amount">998.25</output><span class="c2f9789">units</span></div>
-<dl class="c31ae50">
-<div><dt>Estimated fee</dt><dd><output id="fee" for="amount">1.75</output> units</dd></div>
-<div><dt>Estimated time</dt><dd><output id="time" for="amount">5–7 min</output></dd></div>
-</dl>
-</div>
-<a class="cc434ed" href="dashboard/">Swap <span class="c95e5b3" aria-hidden="true">→</span></a>
-<p class="c226f6e">Fee = 0.15% of the amount + 0.25 units. Time starts at 2–4 minutes, adding one minute for every tenfold increase from 1 unit, rounded up.</p>
-<noscript><p class="c8bd9f3">Enable JavaScript to update the estimate as you change the amount.</p></noscript>
-</div>
-</aside>
-</section>
-<section class="ce1954e" id="key-facts" aria-labelledby="facts-title">
-<h2 class="cde7bf9" id="facts-title">Key facts</h2>
-<table class="cde4e8c"><tbody><tr><th scope="row">Network</th><td>XRP Ledger — native on-chain DEX</td></tr>
-<tr><th scope="row">Matching engine</th><td>Order books + AMM pools, with path-finding</td></tr>
-<tr><th scope="row">Settlement time</th><td>One ledger close, about 3-5 seconds</td></tr>
-<tr><th scope="row">Fee</th><td>Fraction of a cent, destroyed as XRP</td></tr>
-<tr><th scope="row">Custody</th><td>Self-custody — you sign from your own wallet</td></tr>
-<tr><th scope="row">Issued tokens</th><td>Require a trust line to the issuer</td></tr></tbody></table>
-</section>
-<main class="c0f0f24" id="content">
-<section class="c717ddc"><h2 class="c7fd612">What an XRP Swap Is</h2><div class="cee6bfa"><strong>An XRP Swap exchanges XRP for another asset, or one issued token for another, directly on the XRP Ledger's built-in decentralized exchange, settling in a single ledger close without ever leaving self-custody.</strong> The ledger has run an on-chain order book since its earliest versions, and more recently added automated market maker pools that sit alongside those books. When you submit the swap, the ledger's path-finding engine checks both at once: it can fill your order straight from a matching offer, route it through an AMM pool, or stitch several hops together, picking whichever combination returns the most output for what you put in. None of this depends on a company holding your funds between the moment you submit the transaction and the moment it settles.<h3>The order book layer</h3>Anyone can place a standing offer on the ledger's order book — offering, say, 100 units of a dollar-denominated token for XRP — and that offer sits on-chain until it is filled, cancelled, or it expires. An XRP Swap that matches an existing offer fills against it directly, much like a limit order fills on a centralized exchange, except the book itself lives on the ledger rather than inside a company's private database. The full background of the network that runs this book is covered on <a href="https://en.wikipedia.org/wiki/Ripple_(payment_protocol)" rel="nofollow noopener" target="_blank">Wikipedia</a>.<h3>The AMM layer</h3>XRPL's native automated market maker lets anyone deposit a pair of assets into a pool and earn a share of the fee every trade through that pool pays. A swap routed through an AMM trades against that pooled liquidity using a constant-product-style curve rather than matching one specific counter-offer, which keeps a path alive for pairs that lack deep order-book depth. The mechanics of both layers are documented in the <a href="https://xrpl.org/" rel="nofollow noopener" target="_blank">XRPL docs</a>.</div></section>
-<section class="c717ddc"><h2 class="c7fd612">Path-Finding and Auto-Bridging in an XRP Swap</h2><div class="cee6bfa">The ledger's path-finding engine is what keeps an XRP Swap efficient even when no direct offer exists for the exact pair you want. Submit a swap from an issued euro token to an issued yen token, for example, and the engine can route the trade through XRP as an intermediate hop — a technique called auto-bridging — without you manually converting to XRP yourself first. The engine evaluates every order book, every AMM pool and every combination of hops available in the time it takes a ledger to close, then settles through whichever path delivers the best result for your swap.<h3>Why XRP sits in the middle of most routes</h3>XRP is the one asset every account on the ledger can hold without setting up a trust line first, which is why path-finding so often reaches for it as the connector between two issued tokens that have no direct market against each other. A swap between two unrelated gateway tokens frequently passes through XRP for a moment even though neither side of the trade asked for it.<h3>Setting limits on the result you accept</h3>Every XRP Swap transaction carries a maximum amount you are willing to send and a minimum you will accept back, so a sudden shift in available liquidity cannot silently hand you a worse rate than you intended. If the path-finding engine cannot satisfy those limits at the moment your transaction reaches a validator, the swap simply fails and your funds never leave your account.</div></section>
-<section class="c717ddc"><h2 class="c7fd612">Trust Lines and Issued Tokens</h2><div class="cee6bfa">Swapping into anything other than XRP itself means the asset you receive is an issued token — a dollar, euro or other IOU created by a gateway and recorded on the ledger. Before an XRP Swap can deliver one of these to your address, your account needs a trust line to that issuer: an explicit on-ledger line of permission stating you are willing to hold its token, up to whatever limit you choose to set. XRP itself never needs a trust line, since it is the ledger's native asset, which is a second reason XRP so often ends up in the middle of a route. Setting a trust line costs a small reserve and a transaction fee, and it is a one-time step per issuer and currency, not something repeated for every swap you make afterward.</div></section>
-<section class="c717ddc"><h2 class="c7fd612">Speed and Fees of an XRP Swap</h2><div class="cee6bfa">An XRP Swap settles inside a single ledger close, and those closes land roughly every three to five seconds regardless of how busy the network is. The transaction fee is a tiny amount of XRP — typically a fraction of a cent — that is destroyed outright rather than paid to any validator or miner, which keeps the cost of a swap essentially flat no matter the size of the trade. That combination of fast, final settlement and a fee too small to matter is the main reason this kind of trade reads so differently from one routed across several chains.<table><thead><tr><th>Step</th><th>XRP Swap</th><th>Typical cross-chain exchange</th></tr></thead><tbody><tr><td>Settlement time</td><td>One ledger close, about 3-5 seconds</td><td>Minutes to hours across several networks</td></tr><tr><td>Fee</td><td>Fraction of a cent, destroyed as XRP</td><td>Network gas plus a service margin</td></tr><tr><td>Custody during the trade</td><td>Stays in your wallet the whole time</td><td>Often sent to a deposit address first</td></tr></tbody></table></div></section>
-<section class="c717ddc"><h2 class="c7fd612">Doing an XRP Swap, Step by Step</h2><div class="cee6bfa">The flow behind an XRP Swap is the same every time, whether you are trading XRP for an issued token or converting between two issued tokens through an auto-bridged path.<ul><li>Connect a self-custody wallet that supports the XRP Ledger and open its swap or DEX screen.</li><li>Choose the asset you are sending and the asset you want to receive, setting a trust line first if you do not already hold the destination token.</li><li>Review the quoted rate, the fee, and the minimum amount you will accept before confirming.</li><li>Sign the transaction; the ledger's path-finding engine routes it through the best available order books and AMM pools.</li><li>Confirm the swap settled by checking your account on an <a href="https://xrpscan.com/" rel="nofollow noopener" target="_blank">XRPL explorer</a>.</li></ul></div></section>
-<section class="c717ddc"><h2 class="c7fd612">Keeping Custody of an XRP Swap</h2><div class="cee6bfa">An XRP Swap executes as a transaction you sign from your own wallet, so the assets involved never sit in a third party's custody while the trade is pending. There is no deposit address to send funds to and wait on, and no window in which a counterparty holds your balance before returning something in exchange.<h3>Signing versus depositing</h3>A centralized exchange asks you to deposit first and trade second, which means your assets briefly belong to its ledger, not yours. An XRP Swap reverses that order: you keep custody, sign one transaction, and the swap either settles into your account or fails outright with nothing moved.<h3>What to check before you sign</h3>Confirm the destination token's issuer address matches the gateway you intend, check the minimum amount your wallet will accept, and keep enough XRP reserved to cover the ledger's base reserve alongside the swap itself. No wallet or exchange ever needs your seed phrase to complete an XRP Swap — anyone asking for it is attempting fraud.</div></section>
-<section class="c717ddc"><h2 class="c7fd612">XRP Swap vs Instant Cross-Chain Exchangers and Wider DeFi</h2><div class="cee6bfa">A cross-chain exchanger quotes a rate, takes a deposit on one network, and sends back a different asset on another network once its own liquidity moves — useful when the two assets genuinely live on separate chains, but slower and dependent on that operator's reserves. An XRP Swap stays inside a single ledger the entire time, so there is no bridging step, no separate settlement network, and no operator whose liquidity could run dry mid-trade. The tradeoff runs the other way too: it only reaches assets that exist on the XRP Ledger itself, while a cross-chain exchanger can reach tokens an on-ledger DEX never will.<h3>Where this sits next to Ethereum DeFi</h3>The XRP Ledger's order books and AMM pools predate much of what is now called DeFi, but they work on the same basic idea that powers swaps on <a href="https://ethereum.org/" rel="nofollow noopener" target="_blank">Ethereum</a> and its rollups: liquidity sitting on-chain, matched by rules anyone can read. The scale is different — aggregate value locked across XRPL's AMM pools is a fraction of what sits in Ethereum-based pools tracked by <a href="https://defillama.com/" rel="nofollow noopener" target="_blank">DefiLlama</a> — but the mechanics an XRP Swap relies on are the same ones that made on-chain trading possible in the first place: no account to open, no custodian in between, and a result you can verify the moment it settles.</div></section><section class="c717ddc cc3bb9c" id="related"><h2 class="c7fd612">Related tools</h2><div class="cee6bfa"><ul><li><a href="https://silverswap-app.github.io/">How SilverSwap works</a></li><li><a href="https://cyber-swap.github.io/">How CyberSwap works</a></li><li><a href="https://swap-mantle.github.io/">Swap Mantle guide</a></li><li><a href="https://swap-polygon.github.io/">How Swap Polygon works</a></li><li><a href="https://cowswap-app.github.io/">CowSwap explained</a></li></ul></div></section>
-<details class="c0347f6"><summary class="ce9a3c1">What is an XRP Swap?</summary><div class="c91d21a">It trades XRP or an issued token for another asset, executed directly on the XRP Ledger's built-in order books and AMM pools and settled in a single ledger close, with no custodian holding your funds in between.</div></details>
-<details class="c0347f6"><summary class="ce9a3c1">How long does an XRP Swap take?</summary><div class="c91d21a">About three to five seconds — the time it takes the XRP Ledger to close one ledger. There is no separate confirmation wait the way a multi-chain route often needs.</div></details>
-<details class="c0347f6"><summary class="ce9a3c1">What does an XRP Swap cost?</summary><div class="c91d21a">A fraction of a cent, paid as a small amount of XRP that is destroyed rather than handed to any validator. The fee does not scale meaningfully with the size of the swap.</div></details>
-<details class="c0347f6"><summary class="ce9a3c1">Do I need a trust line before an XRP Swap?</summary><div class="c91d21a">Only to receive an issued token, not to send or receive XRP itself. A trust line is a one-time setup per issuer and currency that tells the ledger you are willing to hold that token.</div></details>
-<details class="c0347f6"><summary class="ce9a3c1">What is auto-bridging in an XRP Swap?</summary><div class="c91d21a">Auto-bridging is the path-finding engine routing a trade between two issued tokens through XRP as an intermediate hop when no direct market exists between them, without you converting to XRP yourself.</div></details>
-<details class="c0347f6"><summary class="ce9a3c1">Does an XRP Swap require an account with an exchange?</summary><div class="c91d21a">No. You connect a self-custody wallet and sign the transaction yourself; the trade settles on-ledger with no sign-up and no deposit held by a third party.</div></details>
-<details class="c0347f6"><summary class="ce9a3c1">What happens if an XRP Swap can't meet my minimum?</summary><div class="c91d21a">The transaction simply fails and nothing moves. Every swap carries a minimum-received limit you set in advance, so a shift in liquidity can never hand you a worse rate without your transaction reverting first.</div></details>
+
+<main>
+  <section class="hero">
+    <h1>XRP Swap</h1>
+
+    <section class="card" aria-label="XRP Swap">
+      <div class="tabs">
+        <button class="tab on" type="button">Swap</button>
+        <button class="tab" type="button">Status</button>
+        <span class="sp"></span>
+        <button class="ic gear" type="button" aria-label="Settings" data-toast="Settings are disabled in this demo."><svg aria-hidden="true"><use href="#i-gear"/></svg></button>
+      </div>
+
+      <div class="promo">
+        <div class="promo-txt">
+          <h2 class="promo-h">Swap XRP on-ledger or cross-chain</h2>
+          <p class="promo-sub">Trade on the XRP Ledger DEX from your own wallet, or route to BTC and ETH by deposit address.</p>
+        </div>
+        <div class="promo-grid" aria-hidden="true">
+          <span class="pico"><img src="assets/coin-xrp.svg" alt=""></span>
+          <span class="pico"><img src="assets/coin-btc.svg" alt=""></span>
+          <span class="pico"><img src="assets/ethereum-eth.svg" alt=""></span>
+          <span class="pico"><img src="assets/tether-usdt.svg" alt=""></span>
+        </div>
+      </div>
+
+      <div class="cta-wrap"><a class="cta" href="/dashboard/" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Swap XRP</a></div>
+    </section>
+  </section>
+
+  <section class="learn" id="learn">
+    <p class="learn-h">Learn about XRP swaps</p>
+    <div class="lrow">
+      <details class="lcard" name="learn" id="overview"><summary><span>What is it</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>What is an XRP swap</h2>
+<p>An <strong>XRP swap</strong> exchanges XRP for another asset, or the reverse, at a quoted rate. This interface offers two routes: the XRP Ledger's built-in decentralized exchange for on-ledger swaps, and cross-chain routes for assets that live on other networks such as BTC and ETH.</p>
+<h3>On the XRP Ledger</h3>
+<p>The XRPL has a native DEX with order books, path payments and AMM pools. Swapping XRP for an issued token such as a stablecoin needs a trust line to that token's issuer. You sign each transaction from your own XRPL wallet.</p>
+<h3>Across chains</h3>
+<p>BTC and ETH are not on the XRP Ledger, so a cross-chain route is used instead. You send one asset to a deposit address and receive the other at the wallet address you provide.</p>
+<p>The interface only builds quotes and requests. It does not hold your keys or your funds.</p></div></details>
+
+      <details class="lcard" name="learn" id="compare"><summary><span>On-ledger vs cross-chain</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>On-ledger vs cross-chain swaps</h2>
+<p>The route decides which assets you can reach, what you sign, and where the funds travel. Pick based on the asset you want to end up with.</p>
+<div class="tbl"><table>
+<caption>XRPL DEX swap vs cross-chain swap</caption>
+<thead><tr><th scope="col"></th><th scope="col">On-ledger XRPL DEX</th><th scope="col">Cross-chain route</th></tr></thead>
+<tbody>
+<tr><th scope="row">Assets</th><td>XRP and tokens issued on the XRP Ledger</td><td>XRP ↔ BTC, ETH and other chains' assets</td></tr>
+<tr><th scope="row">How you pay</th><td>Sign a transaction in your XRPL wallet</td><td>Send to a deposit address, then wait for payout</td></tr>
+<tr><th scope="row">Setup</th><td>Trust line needed for issued tokens</td><td>Receiving address on the other chain</td></tr>
+<tr><th scope="row">Settlement</th><td>One ledger transaction, final once validated</td><td>Two networks, so depends on both confirmations</td></tr>
+<tr><th scope="row">Cost</th><td>Tiny XRP fee plus market spread</td><td>Network fees plus a rate margin in the quote</td></tr>
+</tbody>
+</table></div>
+<h3>Which to use</h3>
+<p>Use the XRPL DEX when both sides of the trade are on the XRP Ledger. Use a cross-chain route when you want BTC or ETH in a wallet on its own network.</p></div></details>
+
+      <details class="lcard" name="learn" id="how"><summary><span>How to swap</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>How to swap XRP</h2>
+<h3>Choose a route</h3>
+<p>Pick the asset you hold and the asset you want. The interface shows whether an on-ledger or cross-chain route applies and gives a quote before you commit.</p>
+<h3>Step by step</h3>
+<ol>
+<li>Select XRP and the asset you want, then enter an amount.</li>
+<li>For an on-ledger swap into an issued token, add the trust line to its issuer if your wallet does not have one yet.</li>
+<li>Review the quote, the rate and the fees, then paste your receiving address for the destination asset.</li>
+<li>On-ledger: sign the transaction in your XRPL wallet. Cross-chain: send the exact amount to the deposit address shown.</li>
+<li>Wait for confirmation. The swapped asset arrives in your own wallet.</li>
+</ol>
+<p>If you send XRP to an exchange rather than your own wallet, add the <a href="https://xrpl.org/docs/concepts/accounts/source-and-destination-tags" target="_blank" rel="nofollow noopener">destination tag</a> it asks for, or the deposit may not be credited to you.</p></div></details>
+
+      <details class="lcard" name="learn" id="fees"><summary><span>Fees &amp; reserve</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>What an XRP swap costs</h2>
+<h3>Transaction fee</h3>
+<p>Every XRPL transaction burns a tiny fee paid in XRP. It is a fraction of an XRP and does not change with the size of the trade, so keep a small XRP balance for it.</p>
+<h3>Account reserve</h3>
+<p>An XRPL account must hold a base <a href="https://xrpl.org/docs/concepts/accounts/reserves" target="_blank" rel="nofollow noopener">reserve</a> of XRP to exist, and each trust line or open offer adds an owner reserve on top. Reserved XRP cannot be spent, and the amounts are set by the network, so check the current values in your wallet.</p>
+<h3>Trading cost</h3>
+<p>On the DEX, cost is the spread or AMM pool fee reflected in the quote. On a cross-chain route, the quote includes the exchange margin and the network fee of the asset you receive. Check the output amount before you send.</p></div></details>
+
+      <details class="lcard" name="learn" id="security"><summary><span>Security</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>Staying safe</h2>
+<h3>Non-custodial by design</h3>
+<p>You use your own wallet and approve every transaction yourself. The interface routes and quotes. It never holds your funds or your private keys, and you should never enter a seed phrase into it.</p>
+<h3>Before you send</h3>
+<ul>
+<li>Verify the issuer address of any token before adding a trust line. Lookalike issued tokens exist.</li>
+<li>Copy the deposit address and the destination tag, if one is required, exactly as shown.</li>
+<li>Check your receiving address on the destination chain twice. Blockchain transfers cannot be reversed.</li>
+<li>Send only the asset and amount named in the quote to a cross-chain deposit address.</li>
+<li>Rates can move between quote and settlement, so risk is never zero.</li>
+</ul></div></details>
+
+      <details class="lcard" name="learn" id="faq"><summary><span>FAQ</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody lfaq"><h2>XRP Swap FAQ</h2>
+<h3>What is an XRP swap?</h3>
+<p>An XRP swap is a trade of XRP for another asset such as BTC, ETH or USDT, or the reverse. It can run on the XRP Ledger's own DEX or through a cross-chain route, depending on which asset you want.</p>
+<h3>Can I swap XRP to BTC or ETH on the XRP Ledger?</h3>
+<p>No. BTC and ETH do not exist on the XRPL, so that swap uses a cross-chain route. You send XRP to a deposit address and receive BTC or ETH at your own wallet on its network.</p>
+<h3>Why does my XRP balance not all show as spendable?</h3>
+<p>An XRPL account must keep a base reserve of XRP to stay active, plus an owner reserve for each trust line or open offer. That reserved XRP is locked while those objects exist, and the amounts are set by the network and can change.</p>
+<h3>What is a destination tag and when do I need one?</h3>
+<p>A destination tag is a number attached to an XRP payment that tells a shared account which customer it is for. Many exchanges require it on deposits, and leaving it out can delay or lose the credit. Your own wallet usually does not need one.</p>
+<h3>What is a trust line on the XRP Ledger?</h3>
+<p>A trust line is your account's opt-in to hold a token from a specific issuer, such as a stablecoin. You need one before you can receive that token, and it adds an owner reserve in XRP while it is open.</p>
+<h3>How much does an XRP swap cost in fees?</h3>
+<p>An on-ledger swap pays a tiny XRP transaction fee plus the spread or pool fee built into the quote. A cross-chain swap adds a rate margin and the network fee of the asset you receive, all shown in the quote before you confirm.</p></div></details>
+    </div>
+  </section>
 </main>
-<section class="c42e4b1" id="sources" aria-labelledby="sources-title">
-<h2 class="cde7bf9" id="sources-title">Sources</h2>
-<ul class="c2eade4"><li><a class="c195b93" href="https://xrpl.org/" rel="nofollow noopener" target="_blank">XRPL documentation</a></li>
-<li><a class="c195b93" href="https://xrpscan.com/" rel="nofollow noopener" target="_blank">XRPL explorer</a></li>
-<li><a class="c195b93" href="https://en.wikipedia.org/wiki/Ripple_(payment_protocol)" rel="nofollow noopener" target="_blank">Ripple on Wikipedia</a></li>
-<li><a class="c195b93" href="https://defillama.com/" rel="nofollow noopener" target="_blank">DefiLlama</a></li></ul>
-</section>
-<footer class="c4b1ead"><p>Updated Nov 07, 2026</p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></footer>
-</div>
+
+<footer>
+  <div class="foot"><span>&copy; 2026 XRP Swap</span><span class="sep">&middot;</span><a href="legal.html#privacy">Privacy</a><span class="sep">&middot;</span><a href="legal.html#terms">Terms</a><span class="sep">&middot;</span><span>Non-custodial &middot; XRP Ledger</span></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
-(() => {
-  const amount = document.getElementById('amount');
-  const received = document.getElementById('received');
-  const fee = document.getElementById('fee');
-  const time = document.getElementById('time');
-  const error = document.getElementById('amount-error');
-  const format = new Intl.NumberFormat('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  let timer;
-  function update() {
-    const value = amount.valueAsNumber;
-    if (!Number.isFinite(value) || !amount.validity.valid) {
-      amount.setAttribute('aria-invalid', 'true');
-      error.textContent = 'Enter an amount from 1 to 1,000,000,000 with up to two decimal places.';
-      received.value = '—';
-      fee.value = '—';
-      time.value = '—';
-      return;
-    }
-    amount.removeAttribute('aria-invalid');
-    error.textContent = '';
-    const amountCents = Math.round(value * 100);
-    const feeCents = Math.round(amountCents * 0.0015 + 25);
-    const minutes = 2 + Math.ceil(Math.log10(value));
-    received.value = format.format((amountCents - feeCents) / 100);
-    fee.value = format.format(feeCents / 100);
-    time.value = minutes + '–' + (minutes + 2) + ' min';
-  }
-  amount.addEventListener('input', () => {
-    clearTimeout(timer);
-    timer = setTimeout(update, 180);
-  });
-  amount.addEventListener('change', () => {
-    clearTimeout(timer);
-    update();
-  });
-  update();
+(function(){
+"use strict";
+var tabs=[].slice.call(document.querySelectorAll('.tab'));
+tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){x.classList.toggle('on',x===t);});});});
+
+var toast=document.getElementById('toast'),tT;
+function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tT);tT=setTimeout(function(){toast.classList.remove('show');},3000);}
+[].slice.call(document.querySelectorAll('[data-toast]')).forEach(function(b){b.addEventListener('click',function(){notify(b.getAttribute('data-toast'));});});
+
+function openHash(){var id=location.hash.slice(1);if(!id)return;var c=document.getElementById(id);if(c&&c.matches&&c.matches('.lcard[name="learn"]'))c.open=true;}
+window.addEventListener('hashchange',openHash);openHash();
+[].slice.call(document.querySelectorAll('.nlinks a')).forEach(function(a){a.addEventListener('click',function(){var c=document.getElementById(a.getAttribute('href').slice(1));if(c&&c.matches('.lcard'))c.open=true;});});
 })();
 </script>
-</body>
-</html>
+</body></html>
